@@ -38,6 +38,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
         let realmInstance1 = try! Realm()
         self.itemList = realmInstance1.objects(TodoModel.self)
         
+        // データソースを self に設定する必要がある。
+        self.todoTableView.dataSource = self
+        
         self.todoTableView.reloadData()
         
         //print(self.itemList)
