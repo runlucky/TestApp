@@ -38,7 +38,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pqx-dn-jS8">
-                                <rect key="frame" x="0.0" y="218" width="414" height="644"/>
+                                <rect key="frame" x="0.0" y="274" width="414" height="588"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="testCell" textLabel="191-nW-LhR" style="IBUITableViewCellStyleDefault" id="nfx-3R-1fy">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -60,37 +60,66 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4MC-wp-6G8">
+                                <rect key="frame" x="20" y="218" width="374" height="36"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                <state key="normal" title="Remove All">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapAddButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AeX-vr-ppM"/>
+                                    <action selector="tapRemoveAllButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tEf-nu-ZAE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="GSs-KH-m84" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="0Be-eM-C2B"/>
+                            <constraint firstItem="Pqx-dn-jS8" firstAttribute="leading" secondItem="Qqo-JW-FIf" secondAttribute="leading" id="0Dz-JK-eS4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Qqo-JW-FIf" secondAttribute="trailing" id="1do-gr-N6C"/>
                             <constraint firstItem="ETv-l0-iVn" firstAttribute="top" secondItem="GSs-KH-m84" secondAttribute="bottom" constant="20" id="2lc-DW-4aw"/>
+                            <constraint firstItem="Pqx-dn-jS8" firstAttribute="trailing" secondItem="Qqo-JW-FIf" secondAttribute="trailing" id="3Uc-53-ljW"/>
                             <constraint firstItem="Qqo-JW-FIf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6UU-cZ-dsk"/>
-                            <constraint firstItem="Pqx-dn-jS8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AQk-fY-O6U"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ETv-l0-iVn" secondAttribute="trailing" constant="20" id="BEV-sF-kYs"/>
-                            <constraint firstItem="Pqx-dn-jS8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Bz6-eP-oVJ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Pqx-dn-jS8" secondAttribute="bottom" id="Cg5-5x-S7b"/>
                             <constraint firstItem="Qqo-JW-FIf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="FDT-bB-UJT"/>
-                            <constraint firstItem="Pqx-dn-jS8" firstAttribute="top" secondItem="ETv-l0-iVn" secondAttribute="bottom" constant="20" id="FZa-d4-Vb0"/>
                             <constraint firstItem="ETv-l0-iVn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="GcJ-0b-YT8"/>
                             <constraint firstItem="ETv-l0-iVn" firstAttribute="top" secondItem="GSs-KH-m84" secondAttribute="bottom" constant="20" id="I2t-Cy-SFj"/>
+                            <constraint firstItem="4MC-wp-6G8" firstAttribute="top" secondItem="ETv-l0-iVn" secondAttribute="bottom" constant="20" id="J1O-Yo-jRb"/>
+                            <constraint firstItem="Pqx-dn-jS8" firstAttribute="top" secondItem="4MC-wp-6G8" secondAttribute="bottom" constant="20" id="M3a-Qh-pte"/>
                             <constraint firstItem="GSs-KH-m84" firstAttribute="top" secondItem="Qqo-JW-FIf" secondAttribute="bottom" constant="20" id="MGP-75-nuB"/>
+                            <constraint firstItem="Pqx-dn-jS8" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="NK1-Cy-gtF"/>
                             <constraint firstItem="ETv-l0-iVn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="O7i-zp-PaG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4MC-wp-6G8" secondAttribute="trailing" constant="20" id="RGI-qZ-CL8"/>
                             <constraint firstItem="GSs-KH-m84" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Upy-BT-EyK"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pqx-dn-jS8" secondAttribute="trailing" id="gIE-VJ-Jt6"/>
+                            <constraint firstItem="4MC-wp-6G8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="bpu-uW-bP7"/>
                             <constraint firstItem="ETv-l0-iVn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="i3C-bK-BWA"/>
+                            <constraint firstItem="Pqx-dn-jS8" firstAttribute="top" secondItem="4MC-wp-6G8" secondAttribute="top" constant="56" id="nCv-4V-bdd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GSs-KH-m84" secondAttribute="trailing" constant="20" id="szw-7N-Igz"/>
+                            <constraint firstItem="Pqx-dn-jS8" firstAttribute="top" secondItem="4MC-wp-6G8" secondAttribute="bottom" constant="20" id="whu-fY-YOo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="ETv-l0-iVn" id="2un-7o-szd"/>
+                        <outlet property="removeAllButton" destination="4MC-wp-6G8" id="by4-JJ-2dH"/>
                         <outlet property="todoTableView" destination="Pqx-dn-jS8" id="69H-ZA-dza"/>
                         <outlet property="todoTextFiled" destination="GSs-KH-m84" id="lvv-CA-LMo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9bo-1h-YxC">
+                    <rect key="frame" x="0.0" y="0.0" width="374" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                    <state key="normal" title="Remove All">
+                        <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    </state>
+                    <connections>
+                        <action selector="tapAddButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zlU-Qd-FGZ"/>
+                    </connections>
+                </button>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="119.86607142857142"/>
         </scene>

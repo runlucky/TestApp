@@ -14,6 +14,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var todoTextFiled: UITextField!
     @IBOutlet weak var todoTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var removeAllButton: UIButton!
     
     var itemList: Results<TodoModel>!
     
@@ -26,15 +27,24 @@ class ViewController: UIViewController,UITextFieldDelegate {
             realmInstance2.add(instancedTodoModel)
         }
         self.todoTableView.reloadData()
+        print(itemList)
     }
+    
+    @IBAction func tapRemoveAllButton(_ sender: Any) {
+        let realmInstance3 = try! Realm()
+        try! realmInstance3.write{
+            realmInstance3.deleteAll()
+        }
+        self.todoTableView.reloadData()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // データソースを self に設定する必要あり
         self.todoTableView.dataSource = self
-        
-        // Addボタンの角を丸くする処理
         addButton.layer.cornerRadius = 5
+        removeAllButton.layer.cornerRadius = 5
         
         let realmInstance1 = try! Realm()
         self.itemList = realmInstance1.objects(TodoModel.self)

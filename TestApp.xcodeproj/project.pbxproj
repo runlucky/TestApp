@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		85C4523F4DA5CDAA7E96E68E /* Pods_TestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D44ADE529C71B5F4956256 /* Pods_TestApp.framework */; };
-		A176D2F3247673E400D979A0 /* DDLogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176D2F2247673E400D979A0 /* DDLogHelper.swift */; };
 		A1E3A5CD2473499300A02C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3A5CC2473499300A02C13 /* AppDelegate.swift */; };
 		A1E3A5CF2473499400A02C13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3A5CE2473499400A02C13 /* SceneDelegate.swift */; };
 		A1E3A5D12473499400A02C13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3A5D02473499400A02C13 /* ViewController.swift */; };
@@ -22,7 +21,6 @@
 		1C1460E34C4ED1E3AA891001 /* Pods-TestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.release.xcconfig"; path = "Target Support Files/Pods-TestApp/Pods-TestApp.release.xcconfig"; sourceTree = "<group>"; };
 		30259D3D415F0B3FF78139C5 /* Pods-TestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.debug.xcconfig"; path = "Target Support Files/Pods-TestApp/Pods-TestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		43D44ADE529C71B5F4956256 /* Pods_TestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A176D2F2247673E400D979A0 /* DDLogHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDLogHelper.swift; path = "../../../Downloads/2aef1b6b1e391f0085d2-0ce6b28d37ed8d9b5750c475394964c940d9de49/DDLogHelper.swift"; sourceTree = "<group>"; };
 		A1E3A5C92473499300A02C13 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E3A5CC2473499300A02C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1E3A5CE2473499400A02C13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 				A1E3A5CE2473499400A02C13 /* SceneDelegate.swift */,
 				A1E3A5D02473499400A02C13 /* ViewController.swift */,
 				A1E3A5D22473499400A02C13 /* Main.storyboard */,
-				A176D2F2247673E400D979A0 /* DDLogHelper.swift */,
 				A1E3A5E22473524A00A02C13 /* TodoModel.swift */,
 				A1E3A5D52473499500A02C13 /* Assets.xcassets */,
 				A1E3A5D72473499500A02C13 /* LaunchScreen.storyboard */,
@@ -212,7 +209,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A176D2F3247673E400D979A0 /* DDLogHelper.swift in Sources */,
 				A1E3A5D12473499400A02C13 /* ViewController.swift in Sources */,
 				A1E3A5E32473524A00A02C13 /* TodoModel.swift in Sources */,
 				A1E3A5CD2473499300A02C13 /* AppDelegate.swift in Sources */,
