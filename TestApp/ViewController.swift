@@ -22,45 +22,38 @@ class ViewController: UIViewController,UITextFieldDelegate {
         instancedTodoModel.todo = self.todoTextFiled.text
         
         let realmInstance2 = try! Realm()
-        
         try! realmInstance2.write{
             realmInstance2.add(instancedTodoModel)
         }
-        
         self.todoTableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // データソースを self に設定する必要あり
+        self.todoTableView.dataSource = self
+        
+        // Addボタンの角を丸くする処理
         addButton.layer.cornerRadius = 5
         
         let realmInstance1 = try! Realm()
         self.itemList = realmInstance1.objects(TodoModel.self)
-        
-        // データソースを self に設定する必要がある。
-        self.todoTableView.dataSource = self
-        
         self.todoTableView.reloadData()
-        
-        //print(self.itemList)
     }
 }
-    
 
-    extension ViewController: UITableViewDataSource{
+
+extension ViewController: UITableViewDataSource{
         
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                return self.itemList.count
-            }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.itemList.count
+    }
             
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let testCell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "testCell")!
-            
-            let item: TodoModel = self.itemList[(indexPath as NSIndexPath).row]
-
-            testCell.textLabel?.text = item.todo
-            return testCell
-        }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let testCell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "testCell")!
+        let item: TodoModel = self.itemList[(indexPath as NSIndexPath).row]
+        testCell.textLabel?.text = item.todo
+        return testCell
+    }
 }
 
