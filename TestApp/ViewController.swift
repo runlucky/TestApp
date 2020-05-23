@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController,UITextFieldDelegate {
+class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate {
     
     @IBOutlet weak var todoTextFiled: UITextField!
     @IBOutlet weak var todoTableView: UITableView!
@@ -45,6 +45,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         // データソースを self に設定する必要あり
         self.todoTableView.dataSource = self
+        // UITableViewDelegate を self に設定
+        self.todoTableView.delegate = self
+        
         addButton.layer.cornerRadius = 5
         removeAllButton.layer.cornerRadius = 5
         
@@ -89,5 +92,19 @@ extension ViewController: UITableViewDataSource{
             tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath)番目のセルが選択されました")
+        showAlertController(indexPath)
+    }
+    
+    func showAlertController(_ indexPath: IndexPath){
+        var alertController: UIAlertController = UIAlertController(title: "\(String(indexPath.row))番目の ToDo を編集", message: itemList[indexPath.row].todo, preferredStyle: .alert)
+        alertController.addTextField()
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+
 }
 
