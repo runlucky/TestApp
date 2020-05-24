@@ -10,17 +10,23 @@
 前掲の記事を参考にして、ToDo を追加しテーブルビューで表示することに加えて下記機能を実装した。
 
 ・**Remove All ボタン** をクリックすると、ToDo を全て削除
-<img width="200" alt="Simulator Screen Shot - iPhone SE (2nd generation) - 2020-05-24 at 12.47.27.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/199441/d4158fb4-2a2e-a338-67bc-4c08eb0189d3.png"><img width="200" alt="Simulator Screen Shot - iPhone SE (2nd generation) - 2020-05-24 at 12.47.33.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/199441/3205daa6-c8ab-e000-23c2-1a0b03189f6f.png">
+
+<img width="200" alt="Simulator Screen Shot - iPhone SE (2nd generation) - 2020-05-24 at 12.47.27.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/199441/d4158fb4-2a2e-a338-67bc-4c08eb0189d3.png">
+<img width="200" alt="Simulator Screen Shot - iPhone SE (2nd generation) - 2020-05-24 at 12.47.33.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/199441/3205daa6-c8ab-e000-23c2-1a0b03189f6f.png">
 
 ・ToDo を表示しているテーブルビューのセルを左にスライドすると、その ToDo のみを削除
+
 <img width="200" alt="Simulator Screen Shot - iPhone SE (2nd generation) - 2020-05-24 at 12.47.11.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/199441/7e35901f-a185-3873-b22e-d53a5ba43d2e.png">
 
 ・ToDo を表示しているテーブルビューのセルをクリックすると、ToDo を編集するためのアラートコントローラを表示
+
 <img width="200" alt="Simulator Screen Shot - iPhone SE (2nd generation) - 2020-05-24 at 12.47.19.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/199441/e5dc65cf-a6ee-e8de-9ea3-5412b1251a2c.png">
 
 
 ・アラートコントローラの **OKボタン** をクリックすると、ToDo を更新
-<img width="200" alt="Simulator Screen Shot - iPhone SE (2nd generation) - 2020-05-24 at 12.47.23.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/199441/39292f27-cc64-c0c4-a832-6cae51b41383.png"><img width="200" alt="Simulator Screen Shot - iPhone SE (2nd generation) - 2020-05-24 at 12.47.27.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/199441/db33386c-bd74-784d-1fec-29663e70c7a3.png">
+
+<img width="200" alt="Simulator Screen Shot - iPhone SE (2nd generation) - 2020-05-24 at 12.47.23.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/199441/39292f27-cc64-c0c4-a832-6cae51b41383.png">
+<img width="200" alt="Simulator Screen Shot - iPhone SE (2nd generation) - 2020-05-24 at 12.47.27.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/199441/db33386c-bd74-784d-1fec-29663e70c7a3.png">
 
 
 ## 前提条件
