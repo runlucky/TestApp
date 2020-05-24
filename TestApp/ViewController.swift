@@ -15,27 +15,28 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate {
     @IBOutlet weak var todoTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var removeAllButton: UIButton!
-    
     var itemList: Results<TodoModel>!
     
+    // Add ボタンをクリックした際に実行する処理
     @IBAction func tapAddButton(_ sender: Any) {
         let instancedTodoModel:TodoModel = TodoModel()
         instancedTodoModel.todo = self.todoTextFiled.text
         
-        let realmInstance2 = try! Realm()
-        try! realmInstance2.write{
-            realmInstance2.add(instancedTodoModel)
+        // テキストフィールドに入力した文字をコンソールに出力
+        print(self.todoTextFiled.text)
+        
+        let realmInstance = try! Realm()
+        try! realmInstance.write{
+            realmInstance.add(instancedTodoModel)
         }
         self.todoTableView.reloadData()
-        
-        // 格納さているデータをコンソールに出力
-        print(itemList)
     }
     
+    // Remove All ボタンをクリックした際に実行する処理
     @IBAction func tapRemoveAllButton(_ sender: Any) {
-        let realmInstance3 = try! Realm()
-        try! realmInstance3.write{
-            realmInstance3.deleteAll()
+        let realmInstance = try! Realm()
+        try! realmInstance.write{
+            realmInstance.deleteAll()
         }
         self.todoTableView.reloadData()
     }
@@ -43,22 +44,18 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // データソースを self に設定する必要あり
+        // UITableViewDataSource を self に設定
         self.todoTableView.dataSource = self
         // UITableViewDelegate を self に設定
         self.todoTableView.delegate = self
         
+        // ボタンの角を丸くする設定
         addButton.layer.cornerRadius = 5
         removeAllButton.layer.cornerRadius = 5
         
-        let realmInstance1 = try! Realm()
-        self.itemList = realmInstance1.objects(TodoModel.self)
+        let realmInstance = try! Realm()
+        self.itemList = realmInstance.objects(TodoModel.self)
         self.todoTableView.reloadData()
-        
-        // 格納されているデータをコンソールに表示
-        print(itemList[0].todo)
-        print(itemList[1].todo)
-        print(itemList[2].todo)
     }
 }
 
@@ -94,17 +91,40 @@ extension ViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath)番目のセルが選択されました")
+        print("セル\(indexPath)が選択されました")
         showAlertController(indexPath)
     }
     
+    // テーブルビューのセルをクリックしたら、アラートコントローラを表示する処理
     func showAlertController(_ indexPath: IndexPath){
-        var alertController: UIAlertController = UIAlertController(title: "\(String(indexPath.row))番目の ToDo を編集", message: itemList[indexPath.row].todo, preferredStyle: .alert)
-        alertController.addTextField()
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let alertController: UIAlertController = UIAlertController(title: "\(String(indexPath.row))番目の ToDo を編集", message: itemList[indexPath.row].todo, preferredStyle: .alert)
+        // アラートコントローラにテキストフィールドを表示 テキストフィールドには入力された情報を表示させておく処理
+        alertController.addTextField(configurationHandler: {(textField: UITextField!) in
+            textField.text = self.itemList[indexPath.row].todo})
+        // アラートコントローラに"OK"ボタンを表示 "OK"ボタンをクリックした際に、テキストフィールドに入力した文字で更新する処理を実装
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+            (action) -> Void in self.updateAlertControllerText(alertController,indexPath)
+        }))
+        // アラートコントローラに"Cancel"ボタンを表示
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
-
+    
+    // "OK"ボタンをクリックした際に、テキストフィールドに入力した文字で更新
+    func updateAlertControllerText(_ alertcontroller:UIAlertController, _ indexPath: IndexPath) {
+        // guard を利用して、nil チェック
+        guard let textFields = alertcontroller.textFields else {return}
+        guard let text = textFields[0].text else {return}
+        
+        // UIAlertController に入力された文字をコンソールに出力
+        print(text)
+        
+        // Realm に保存したデータを UIAlertController に入力されたデータで更新
+        let realmInstance = try! Realm()
+        try! realmInstance.write{
+            itemList[indexPath.row].todo = text
+        }
+        self.todoTableView.reloadData()
+    }
 }
 
