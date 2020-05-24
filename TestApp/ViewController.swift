@@ -22,9 +22,6 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate {
         let instancedTodoModel:TodoModel = TodoModel()
         instancedTodoModel.todo = self.todoTextFiled.text
         
-        // テキストフィールドに入力した文字をコンソールに出力
-        print(self.todoTextFiled.text)
-        
         let realmInstance = try! Realm()
         try! realmInstance.write{
             realmInstance.add(instancedTodoModel)
@@ -81,9 +78,9 @@ extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             // データを削除
-            let realmInstance4 = try! Realm()
-            try! realmInstance4.write {
-                realmInstance4.delete(itemList[indexPath.row])
+            let realmInstance = try! Realm()
+            try! realmInstance.write {
+                realmInstance.delete(itemList[indexPath.row])
             }
             // セルを削除
             tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
