@@ -9,16 +9,16 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate {
+internal class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate {
     
-    @IBOutlet weak var todoTextFiled: UITextField!
-    @IBOutlet weak var todoTableView: UITableView!
-    @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var removeAllButton: UIButton!
-    var itemList: Results<TodoModel>!
+    @IBOutlet private weak var todoTextFiled: UITextField!
+    @IBOutlet private weak var todoTableView: UITableView!
+    @IBOutlet private weak var addButton: UIButton!
+    @IBOutlet private weak var removeAllButton: UIButton!
+    private var itemList: Results<TodoModel>!
     
     // Add ボタンをクリックした際に実行する処理
-    @IBAction func tapAddButton(_ sender: Any) {
+    @IBAction private func tapAddButton(_ sender: Any) {
         let instancedTodoModel:TodoModel = TodoModel()
         instancedTodoModel.todo = self.todoTextFiled.text
         
@@ -30,7 +30,7 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate {
     }
     
     // Remove All ボタンをクリックした際に実行する処理
-    @IBAction func tapRemoveAllButton(_ sender: Any) {
+    @IBAction private func tapRemoveAllButton(_ sender: Any) {
         let realmInstance = try! Realm()
         try! realmInstance.write{
             realmInstance.deleteAll()
@@ -39,7 +39,7 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate {
     }
     
     
-    override func viewDidLoad() {
+    override internal func viewDidLoad() {
         super.viewDidLoad()
         // UITableViewDataSource を self に設定
         self.todoTableView.dataSource = self
@@ -58,11 +58,11 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource{
         
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.itemList.count
     }
             
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let testCell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "testCell")!
         let item: TodoModel = self.itemList[(indexPath as NSIndexPath).row]
         testCell.textLabel?.text = item.todo
@@ -70,12 +70,12 @@ extension ViewController: UITableViewDataSource{
     }
     
     // テーブルビューの編集を許可
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    internal func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
     // テーブルビューのセルとデータを削除
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    internal func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             // データを削除
             let realmInstance = try! Realm()
@@ -87,13 +87,13 @@ extension ViewController: UITableViewDataSource{
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("セル\(indexPath)が選択されました")
         showAlertController(indexPath)
     }
     
     // テーブルビューのセルをクリックしたら、アラートコントローラを表示する処理
-    func showAlertController(_ indexPath: IndexPath){
+    private func showAlertController(_ indexPath: IndexPath){
         let alertController: UIAlertController = UIAlertController(title: "\(String(indexPath.row))番目の ToDo を編集", message: itemList[indexPath.row].todo, preferredStyle: .alert)
         // アラートコントローラにテキストフィールドを表示 テキストフィールドには入力された情報を表示させておく処理
         alertController.addTextField(configurationHandler: {(textField: UITextField!) in
@@ -108,7 +108,7 @@ extension ViewController: UITableViewDataSource{
     }
     
     // "OK"ボタンをクリックした際に、テキストフィールドに入力した文字で更新
-    func updateAlertControllerText(_ alertcontroller:UIAlertController, _ indexPath: IndexPath) {
+    private func updateAlertControllerText(_ alertcontroller:UIAlertController, _ indexPath: IndexPath) {
         // guard を利用して、nil チェック
         guard let textFields = alertcontroller.textFields else {return}
         guard let text = textFields[0].text else {return}
