@@ -6,3 +6,5 @@ xcuserdata
 
 # cocoapod
 TestApp/Pods/*
+
+.idea/

@@ -7,37 +7,36 @@
 //
 
 import UIKit
-import RealmSwift
 
 internal class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate {
-    
     @IBOutlet private weak var todoTextFiled: UITextField!
     @IBOutlet private weak var todoTableView: UITableView!
     @IBOutlet private weak var addButton: UIButton!
     @IBOutlet private weak var removeAllButton: UIButton!
-    private var itemList: Results<TodoModel>!
+    private var itemList: [TodoModel] = []
     
+    private var db: ILocalDatabase!
+
     // Add ボタンをクリックした際に実行する処理
     @IBAction private func tapAddButton(_ sender: Any) {
-        let instancedTodoModel:TodoModel = TodoModel()
-        instancedTodoModel.todo = self.todoTextFiled.text
-        
-        let realmInstance = try! Realm()
-        try! realmInstance.write{
-            realmInstance.add(instancedTodoModel)
-        }
-        self.todoTableView.reloadData()
+        try! db.add(todo: TodoModel(text: self.todoTextFiled.text))
+        reload()
     }
     
     // Remove All ボタンをクリックした際に実行する処理
     @IBAction private func tapRemoveAllButton(_ sender: Any) {
-        let realmInstance = try! Realm()
-        try! realmInstance.write{
-            realmInstance.deleteAll()
-        }
-        self.todoTableView.reloadData()
+        try! db.deleteTodoList()
+        reload()
     }
     
+    private func reload() {
+        itemList = try! db.getTodoList()
+        todoTableView.reloadData()
+    }
+    
+    internal func initialize(database: ILocalDatabase) {
+        self.db = database
+    }
     
     override internal func viewDidLoad() {
         super.viewDidLoad()
@@ -50,40 +49,28 @@ internal class ViewController: UIViewController,UITextFieldDelegate,UITableViewD
         addButton.layer.cornerRadius = 5
         removeAllButton.layer.cornerRadius = 5
         
-        let realmInstance = try! Realm()
-        self.itemList = realmInstance.objects(TodoModel.self)
-        self.todoTableView.reloadData()
+        reload()
     }
 }
 
 extension ViewController: UITableViewDataSource{
-        
-    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.itemList.count
-    }
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { itemList.count }
             
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let testCell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "testCell")!
         let item: TodoModel = self.itemList[(indexPath as NSIndexPath).row]
-        testCell.textLabel?.text = item.todo
+        testCell.textLabel?.text = item.text
         return testCell
     }
     
     // テーブルビューの編集を許可
-    internal func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
+    internal func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { true }
     
     // テーブルビューのセルとデータを削除
     internal func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            // データを削除
-            let realmInstance = try! Realm()
-            try! realmInstance.write {
-                realmInstance.delete(itemList[indexPath.row])
-            }
-            // セルを削除
-            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+            try! db.delete(todo: itemList[indexPath.row])
+            reload()
         }
     }
     
@@ -94,10 +81,10 @@ extension ViewController: UITableViewDataSource{
     
     // テーブルビューのセルをクリックしたら、アラートコントローラを表示する処理
     private func showAlertController(_ indexPath: IndexPath){
-        let alertController: UIAlertController = UIAlertController(title: "\(String(indexPath.row))番目の ToDo を編集", message: itemList[indexPath.row].todo, preferredStyle: .alert)
+        let alertController: UIAlertController = UIAlertController(title: "\(String(indexPath.row))番目の ToDo を編集", message: itemList[indexPath.row].text, preferredStyle: .alert)
         // アラートコントローラにテキストフィールドを表示 テキストフィールドには入力された情報を表示させておく処理
         alertController.addTextField(configurationHandler: {(textField: UITextField!) in
-            textField.text = self.itemList[indexPath.row].todo})
+            textField.text = self.itemList[indexPath.row].text})
         // アラートコントローラに"OK"ボタンを表示 "OK"ボタンをクリックした際に、テキストフィールドに入力した文字で更新する処理を実装
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {
             (action) -> Void in self.updateAlertControllerText(alertController,indexPath)
@@ -117,11 +104,11 @@ extension ViewController: UITableViewDataSource{
         print(text)
         
         // Realm に保存したデータを UIAlertController に入力されたデータで更新
-        let realmInstance = try! Realm()
-        try! realmInstance.write{
-            itemList[indexPath.row].todo = text
-        }
-        self.todoTableView.reloadData()
+        let old = itemList[indexPath.row]
+        let newValue = TodoModel(id: old.id, text: text)
+        try! db.update(todo: newValue)
+        
+        reload()
     }
 }
 

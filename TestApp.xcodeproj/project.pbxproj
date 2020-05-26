@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19EA9721247C014D00C933F7 /* LocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EA9720247C014D00C933F7 /* LocalDatabase.swift */; };
 		85C4523F4DA5CDAA7E96E68E /* Pods_TestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D44ADE529C71B5F4956256 /* Pods_TestApp.framework */; };
 		A1E3A5CD2473499300A02C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3A5CC2473499300A02C13 /* AppDelegate.swift */; };
 		A1E3A5CF2473499400A02C13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3A5CE2473499400A02C13 /* SceneDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19EA9720247C014D00C933F7 /* LocalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabase.swift; sourceTree = "<group>"; };
 		1C1460E34C4ED1E3AA891001 /* Pods-TestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.release.xcconfig"; path = "Target Support Files/Pods-TestApp/Pods-TestApp.release.xcconfig"; sourceTree = "<group>"; };
 		30259D3D415F0B3FF78139C5 /* Pods-TestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.debug.xcconfig"; path = "Target Support Files/Pods-TestApp/Pods-TestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		43D44ADE529C71B5F4956256 /* Pods_TestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 				A1E3A5D52473499500A02C13 /* Assets.xcassets */,
 				A1E3A5D72473499500A02C13 /* LaunchScreen.storyboard */,
 				A1E3A5DA2473499500A02C13 /* Info.plist */,
+				19EA9720247C014D00C933F7 /* LocalDatabase.swift */,
 			);
 			path = TestApp;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				A1E3A5D12473499400A02C13 /* ViewController.swift in Sources */,
 				A1E3A5E32473524A00A02C13 /* TodoModel.swift in Sources */,
 				A1E3A5CD2473499300A02C13 /* AppDelegate.swift in Sources */,
+				19EA9721247C014D00C933F7 /* LocalDatabase.swift in Sources */,
 				A1E3A5CF2473499400A02C13 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,7 +362,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YUH8WT596Y;
+				DEVELOPMENT_TEAM = 89944GJ9HX;
 				INFOPLIST_FILE = TestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
